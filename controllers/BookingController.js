@@ -34,6 +34,42 @@ const getAllBooking = async (req, res) => {
     }
 };
 
+const getBookingById = async (req,res) => {
+
+
+    try {
+
+
+        const id = req.params.id;
+        const bookings = await BookingSchema.findById(id).populate('serviceId')
+
+        if (bookings == null) {
+
+            // console.log(error)
+
+            res.status(404).json({
+                messaage: "booking not found !!!",
+                flag: -1
+            })
+        }
+
+        else {
+            res.status(200).json({
+                message: "Fetched Booking...",
+                data: bookings,
+                flag: 1
+            });
+
+
+        }
+    } catch (error) {
+
+        
+       console.log(error)
+    }
+}
+
+
 const getBookingByUserId = async (req,res) => {
 
 
@@ -253,6 +289,7 @@ module.exports = {
 
     createBooking,
     updateBooking,
+    getBookingById,
     getAllBooking,
     updateBookingStatus,
     getBookingByUserId,
