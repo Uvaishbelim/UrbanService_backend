@@ -74,7 +74,7 @@ const getBookingByServiceProviderId = async (req, res) => {
 
 
         const id = req.params.id;
-        const bookings = await BookingSchema.find({ serviceprovider: id }).populate("user").populate("address")
+        const bookings = await BookingSchema.find({ serviceprovider: id }).populate("user").populate("serviceId")
 
         if (bookings == null) {
 

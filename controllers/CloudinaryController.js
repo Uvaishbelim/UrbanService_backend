@@ -1,18 +1,19 @@
-const cloudinary = require('cloudinary').v2
+const cloudinary = require("cloudinary").v2;
 
-const uploadImage = (file)=>{
+const uploadImage = async (file) => {
+  cloudinary.config({
+    cloud_name: "drjysylbp",
+    api_key: "251729489844781",
+    api_secret: "3Zdd0sHd9t380zjjgLevO4YNihw",
+  });
 
-    cloudinary.config({
+  //   cloudinary.uploader.upload(file, (error, result) => {});
+  // const result = await cloundanry.uploader.upload(file);
+  // return result;
 
-        cloud_name:"draa03bm8",
-        api_key:"522643139643729",
-        api_secret:"PH6cRQGhCwGZAItqbw_rjmUSTO4"
-    })
-
-    cloudinary.uploader.upload(file,(error,result)=>{
-
-    })
-}
-module.exports={
-    uploadImage
-}
+    const result = await cloudinary.uploader.upload(file);
+    return result;
+};
+module.exports = {
+  uploadImage,
+};
